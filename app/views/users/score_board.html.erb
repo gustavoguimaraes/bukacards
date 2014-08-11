@@ -1,0 +1,21 @@
+<h1>Ranking</h1>
+
+<div class="large-12 columns">
+  <table width="100%">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <% if @ranking.count < 1 %>
+    <tr><td colspan="3">No Scores Yet.</td></tr>
+    <% end %>
+    <% @sorted_ranking.each do |r| %>
+    <tr>
+      <td><%= r[:name] %></td>
+      <td><%= r[:points] %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,0 +1,33 @@
+<div class="new-user-form">
+	<%= form_for @user do |f| %>
+		<% if @user.errors.any? %>
+			<div class="error_messages">
+				<h2>Form is invalid</h2>
+				<ul>
+					<% @user.errors.full_messages.each do |message| %>
+						<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+
+		<div class="small-12 columns">
+			<%= f.label :name %>
+			<%= f.text_field :name, placeholder: 'Ex. Joe Doe', required: true %>
+		</div>
+		<div class="small-12 columns">
+			<%= f.label :email %>
+			<%= f.email_field :email, placeholder: 'user@domain.com', required: true %>
+		</div>
+		<div class="small-12 columns">
+			<%= f.label :password %>
+			<%= f.password_field :password, required: true %>
+		</div>
+		<div class="small-12 columns">
+			<%= f.label :password_confirmation %><br />
+			<%= f.password_field :password_confirmation, required: true %>
+		</div>
+		<div class="actions small-12 columns"><%= f.submit %></div>
+	<% end %>
+</div>

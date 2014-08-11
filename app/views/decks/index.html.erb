@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="large-12 columns">
+		<h3>Deck Manager</h3>
+		<%= render 'form' %>
+		<table width="100%">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Card count</th>
+					<th>Action</th>
+					<th>Tools</th>
+				</tr>
+			</thead>
+
+      <% if @decks.count < 1 %>
+      <tr><td colspan="4">No decks created.</td></tr>
+      <% end %>
+
+			<% for deck in @decks %>
+			<tr id="deck_<%= deck.id %>">
+				<td><%= deck.name %></td>
+				<td><%= deck.flashcards.count %></td>
+				<td><%= link_to 'Practice and Review', deck_review_index_path(deck), class: "button alert" %> <%= link_to 'Manage Flashcards', deck_flashcards_path(deck), class: "button tiny secondary" %></td>
+				<td>
+					<%= link_to 'Edit', edit_deck_path(deck), class: "button success tiny" %>
+					<%= link_to 'Delete', deck, class: "button tiny alert", method: :delete, remote: true %>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>

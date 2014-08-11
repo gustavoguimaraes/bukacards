@@ -1,0 +1,78 @@
+<div class="row content">
+  <div class="large-12 columns">
+      <!-- Content -->
+
+      <% if current_user %>
+
+        <div class="large-12 columns">
+          <div class="row">
+              <div class="large-12 columns">
+                <div data-alert class="alert-box secondary">
+                  You are logged in as <%= current_user.email %>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="large-12 columns">
+          <div class="row">
+              <div class="large-12 columns">
+                <ul class="vcard">
+                  <li>Total flashcards: <%= current_user.flashcards.count %></li>
+                  <li>Total reviews <%= current_user.review_logs.count %></li>
+                  <li>New cards: <%= current_user.flashcards.where("interval < 1").count %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        <div class="large-12 columns">
+          <table width="100%">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Card count</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <% if @decks.count < 1 %>
+            <tr><td colspan="3">No decks created.</td></tr>
+            <% end %>
+            <% @decks.each do |deck| %>
+            <tr id="deck_<%= deck.id %>">
+              <td><%= deck.name %></td>
+              <td><%= deck.flashcards.count %></td>
+              <td><%= link_to 'Practice and Review', deck_review_index_path(deck), class: "button alert" %> <%= link_to 'Manage Flashcards', deck_flashcards_path(deck), class: "button tiny secondary" %></td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+
+      <% else %>
+
+        <div class="display large-8 columns">
+          <h2>Buka Cards</h2>
+          <p>Spend your time learning new words and don't waste time reviewing the words that you already know.</p>
+          <p><%= link_to "Register", signup_path, class: "secondary tiny button" %> or <%= link_to "Login", login_path, class: "tiny button" %> to start learning German</p>
+        </div>
+
+      <% end %>
+
+
+<!-- Footer -->
+
+<footer class="row space">
+  <div class="large-12 columns">
+
+    <div class="row">
+      <div class="large-6 columns">
+        <p>Made with <img src="https://cdn3.iconfinder.com/data/icons/health-medicine/512/Heart_C-512.png" alt="heart" width="15" height="15"> and <img src="https://cdn3.iconfinder.com/data/icons/medcare/512/brain-128.png" alt="brain" width="15" height="15"/> by <a href="http://www.twitter.com/gus_tavo_guim">Gustavo</a> for the BUKA Fellows</p>
+      </div>
+
+
+    </div>
+  </div>
+</footer>
+
+  </div>
+</div>
