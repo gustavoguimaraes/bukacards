@@ -23,21 +23,13 @@ class User < ActiveRecord::Base
 	def self.user_scores
 
 		array = []
-		scores = 0
+		# scores = 0
 		all.each do |u|
-
-
-			u.decks.each do |d|
-
-				d.review_logs.each do |r|
-
-					scores += r.score
-
-				end
-				array << hash = {name: u.name, points:scores}
-
+			scores = 0
+			u.review_logs.each do |r|
+				scores += r.score
 			end
-
+				array << hash = {name: u.name, points:scores}
 		end
 		array
 	end
