@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
 	def score_board
 		@ranking = User.user_scores
-		@sorted_ranking = @ranking.sort_by{:points}.reverse
+		@sorted_ranking = @ranking.sort_by{ |h| h[:points] }.reverse
 	end
 
 	def user_params
