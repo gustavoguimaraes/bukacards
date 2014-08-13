@@ -21,9 +21,7 @@ class User < ActiveRecord::Base
 	end
 
 	def self.user_scores
-
 		array = []
-		# scores = 0
 		all.each do |u|
 			scores = 0
 			u.review_logs.each do |r|
