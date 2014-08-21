@@ -1,6 +1,6 @@
 class Flashcard < ActiveRecord::Base
 	validates :front, :back, presence: true
-	validates :front, :back, uniqueness: true
+
 	belongs_to :deck
 	before_create :default_values
 
